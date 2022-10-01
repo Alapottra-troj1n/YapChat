@@ -5,7 +5,7 @@ import Sidebar from '../components/Sidebar';
 const Home = () => {
     return (
         <div>
-            <div className="flex" >
+            <div className="grid grid-cols-2 h-auto" >
                 <Sidebar/>
                 <Chat/>
             </div>

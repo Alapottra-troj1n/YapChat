@@ -2,9 +2,10 @@ import React from 'react';
 
 const Navbar = () => {
     return (
-        <div className="flex gap-10">
-            <div className="flex items-center" >
-                <h2 className="text-xl font-semibold text-white" >YappChat</h2>
+        <div className="flex gap-10 p-5">
+            <div className="flex items-center gap-2" >
+            <img src="https://cdn-icons-png.flaticon.com/512/1041/1041916.png" className="w-10" alt="" />
+                <h2 className="text-xl font-semibold text-white" >YapChat</h2>
             </div>
 
             <div className="flex items-center gap-3">
@@ -12,7 +13,7 @@ const Navbar = () => {
                 </div>
                 <h2 className="text-md font-semibold text-white">Alapottra</h2>
                 <div>
-                <button className="px-4 py-1 bg-fuchsia-400 text-white rounded-md">logout</button>
+                <button className="px-4 py-1 bg-slate-200 font-semibold text-gray-700 rounded-md">logout</button>
                 </div>
             </div>
 
