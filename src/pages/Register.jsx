@@ -27,7 +27,8 @@ const Register = () => {
                         </div>
 
                         <div>
-                            <input type="file"  name="image" id="" />
+                            <input type="file" className='hidden' name="image" id="image" />
+                            <label className="cursor-pointer font-semibold text-gray-600 flex items-center"htmlFor="image"><img src="https://cdn-icons-png.flaticon.com/512/5460/5460486.png" className='w-10' alt="" /> Upload Profile</label>
                         </div>
 
                         <input type="submit" className="px-4 py-2 bg-fuchsia-300 font-semibold rounded text-white cursor-pointer hover:bg-fuchsia-400 transition-all " value="Register" />
