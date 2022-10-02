@@ -5,7 +5,7 @@ import Search from './Search';
 
 const Sidebar = () => {
     return (
-        <div className=" bg-slate-600 rounded-l-xl flex flex-col gap-5">
+        <div className=" bg-slate-600 rounded-l-xl flex flex-col  overflow-hidden">
             <Navbar/>
             <Search/>
             <Chats/>
