@@ -10,11 +10,18 @@ const Message = () => {
                     </div>
 
                 </div>
-                <div className='px-7 py-2 m-1 rounded-t-xl rounded-br-xl bg-white' >
+                <div className='px-7 py-2 m-1 rounded-t-xl rounded-br-xl bg-white ' >
                     {/* message */}
                     <h2 className="font-semibold text-sm lg:text-md" >Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio dolor dolore aliquid sed voluptas hic! Repudiandae numquam repellendus.</h2>
+
                 </div>
             </div>
+            <div className='py-5 lg:w-40 md:w-28 w-28 ml-14' >
+                <img src="profile.jpg" className="rounded-md" alt="" />
+            </div>
+
+
+
             <div>
                 {/* time */}
                 <h2 className="text-sm text-slate-600" >Just Now</h2>
