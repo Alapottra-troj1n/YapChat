@@ -2,6 +2,11 @@ import React from 'react';
 import { MdOutlineAddPhotoAlternate } from 'react-icons/md';
 import { CgAttachment } from 'react-icons/cg';
 const Input = () => {
+
+
+
+
+    
     return (
         <div className="bg-white relative" >
             <input type="text" className="h-16 p-4 w-full" placeholder="Type Something" />

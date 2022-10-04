@@ -8,7 +8,7 @@ import Register from './pages/Register';
 
 function App() {
 
-  const {currentUser} =  useContext(AuthContext)
+  const {currentUser,loading} =  useContext(AuthContext)
 
   console.log(currentUser)
   const ProtectedRoute = ({children}) => {
@@ -20,6 +20,10 @@ function App() {
       return children
     }
 
+  }
+
+  if(loading){
+    return null;
   }
 
   return (
