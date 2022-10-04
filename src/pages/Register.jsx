@@ -4,10 +4,19 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db, storage } from '../firebase.init';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { doc, setDoc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom'
+import Spinner from '../components/Spinner';
 
 
 const Register = () => {
     const [err, setErr] = useState('');
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate()
+
+    if (loading) {
+
+        return <Spinner />
+    }
 
 
     const handleRegistration = async (e) => {
@@ -24,56 +33,43 @@ const Register = () => {
 
 
         try {
-
+            setLoading(true);
             const res = await createUserWithEmailAndPassword(auth, email, password);
 
 
-
-            const storageRef = ref(storage, username);
-
-            const uploadTask = uploadBytesResumable(storageRef, file);
-
-            uploadTask.on(
-                    
-                (error) => {
-                    setErr(error.message)
-                },
-                () => {
-
-                    getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-
-                            await updateProfile(res.user, {
-                                displayName: username,
-                                photoURL: downloadURL
-                            });
-                            await setDoc(doc(db, 'users', res.user.uid), {
-                                uid: res.user.uid,
-                                displayName: username,
-                                email,
-                                photoURL: downloadURL
-                            });
-
-                            await setDoc(doc(db, 'userChats', res.user.uid), {});
-                          
-
-                       
-
-
-
-                    });
+            const date = new Date().getTime();
+            const storageRef = ref(storage, `${username + date}`);
 
 
 
 
 
-                }
-            );
+            await uploadBytesResumable(storageRef, file).then(() => {
+                getDownloadURL(storageRef).then(async (downloadURL) => {
+                    try {
+                        //Update profile
+                        await updateProfile(res.user, {
+                            displayName: username,
+                            photoURL: downloadURL,
+                        });
+                        //create user on firestore
+                        await setDoc(doc(db, "users", res.user.uid), {
+                            uid: res.user.uid,
+                            displayName: username,
+                            email,
+                            photoURL: downloadURL,
+                        });
 
-
-
-
-
-
+                        //create empty user chats on firestore
+                        await setDoc(doc(db, "userChats", res.user.uid), {});
+                        navigate("/");
+                    } catch (err) {
+                        console.log(err);
+                        setErr(true);
+                        setLoading(false);
+                    }
+                });
+            });
 
 
 
@@ -81,6 +77,7 @@ const Register = () => {
 
         } catch (err) {
             setErr(err.message)
+            setLoading(false);
 
         }
 
@@ -88,6 +85,8 @@ const Register = () => {
 
 
     }
+
+
 
     return (
         <div>
