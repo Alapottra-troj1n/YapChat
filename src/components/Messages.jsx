@@ -13,7 +13,7 @@ const Messages = () => {
 
         const unsub =onSnapshot(doc(db,'chats', data.chatId), (doc)=> {
 
-            doc.exists() && setMessage(doc.data().message);
+            doc.exists() && setMessage(doc.data().messages);
 
         })
 
@@ -25,7 +25,7 @@ const Messages = () => {
 
     return (
         <div className="max-h-[70vh] overflow-scroll overflow-x-hidden min-h-[70vh]" >
-            {messages.map(m => (
+            {messages?.map(m => (
                 <Message message={m} />
 
             ))}

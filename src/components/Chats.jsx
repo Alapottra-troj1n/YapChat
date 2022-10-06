@@ -39,7 +39,7 @@ const Chats = () => {
         <div className="p-5 flex flex-col lg:gap-5">
 
           {
-            Object.entries(chats)?.map(chat => (
+            Object.entries(chats)?.sort((a,b)=> b[1].date - a[1].date).map(chat => (
 
                 <div onClick={()=> handleSelect(chat[1].userInfo)}  key={chat[0]} className="flex items-center lg:gap-5 gap-2 p-3 rounded-md flex-col lg:flex-row hover:bg-slate-500 cursor-pointer transition-all" >
                 <div style={{ backgroundImage: `url(${chat[1].userInfo.photoURL})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }} className="lg:h-16 lg:w-16 h-8 w-8  rounded-full" >
